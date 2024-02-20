@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaDeRestaurante.Data;
 using SistemaDeRestaurante.Logs;
+using SistemaDeRestaurante.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddScoped<ISystemLog, SystemLog>();
+builder.Services.AddScoped<IMesasRepositorio, MesasRepositorio>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
 var app = builder.Build();
 
