@@ -42,6 +42,14 @@ namespace SistemaDeRestaurante.Controllers
             }
         }
 
+        public IActionResult DeletarConta(int id)
+        {
+            try
+            {
+
+            }
+        }
+
         public IActionResult Privacy()
         {
             return View();

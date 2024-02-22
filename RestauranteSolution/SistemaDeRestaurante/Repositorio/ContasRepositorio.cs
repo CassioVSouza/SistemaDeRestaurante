@@ -27,6 +27,45 @@ namespace SistemaDeRestaurante.Repositorio
             }
         }
 
+        public bool DeletarConta(int id)
+        {
+            try
+            {
+                var Conta = EncontrarConta(id);
+                if(Conta == null)
+                {
+                    return false;
+                }
+                _dbContext.Contas.Remove(Conta);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                _log.ErrorMsg("Erro em ContasRepositorio/DeletarConta: " + ex.Message);
+                return false;
+            }
+        }
+
+        private ContaModel? EncontrarConta(int id)
+        {
+            try
+            {
+                var Conta = _dbContext.Contas.FirstOrDefault(o => o.Id == id);
+                if (Conta == null)
+                {
+                    _log.ErrorMsg("Não foi possível encontrar uma conta com o ID informado em ContasRepositorio/EncontrarConta");
+                    return null;
+                }
+                return Conta;
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorMsg("Erro em ContasRepositorio/EncontrarConta: " + ex.Message);
+                return null;
+            }
+        }
+
         public List<ContaModel> PegarTodasAsContas()
         {
             try
