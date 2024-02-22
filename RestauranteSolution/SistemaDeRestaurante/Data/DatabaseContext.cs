@@ -10,8 +10,23 @@ namespace SistemaDeRestaurante.Data
         
         }
 
-        public DbSet<MesaModel> Mesa { get; set; }
-        public DbSet<PedidosModel> Pedidos { get; set; }
-        public DbSet<ProdutoModel> Produtos { get; set; }
+       public DbSet<ContaModel> Contas { get; set; }
+       public DbSet<PedidosModel> Pedidos { get; set; }
+       public DbSet<ProdutosModel> Produtos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ContaModel>()
+                .HasMany(o => o.Pedidos)
+                .WithOne()
+                .HasForeignKey(o => o.Id);
+
+            modelBuilder.Entity<PedidosModel>()
+                .HasMany(o => o.Produtos)
+                .WithOne()
+                .HasForeignKey(o => o.ID);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

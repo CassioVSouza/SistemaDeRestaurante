@@ -1,0 +1,34 @@
+﻿@using SistemaDeRestaurante.Enums
+@model ContaModel
+
+@{
+    Layout = "_Layout_AdminPanel";
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Criar Conta</h1>
+
+<form asp-action="AdicionarConta" method="post">
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" id="Nome">
+        @Html.ValidationMessageFor(o => o.Nome)
+    </div>
+    <div class="mb-3">
+        <label for="Senha" class="form-label">Senha</label>
+        <input type="text" asp-for="Senha" class="form-control" id="Senha">
+        @Html.ValidationMessageFor(o => o.Senha)
+    </div>
+    <div class="mb-3">
+    <label for="mySelect">Tipo de Conta</label>
+    <select asp-for="Perfil" class="form-control">
+            <option value="-1">Selecione</option>
+            <option value="@EnumPerfil.Cliente">Cliente</option>
+            <option value="@EnumPerfil.Admin">Admin</option>
+            <option value="@EnumPerfil.Cozinha">Cozinha</option>
+            <option value="@EnumPerfil.Pagamento">Pagamento</option>
+    </select>
+        @Html.ValidationMessageFor(o => o.Perfil)
+    </div>
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>

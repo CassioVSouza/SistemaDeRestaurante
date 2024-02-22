@@ -1,0 +1,37 @@
+﻿@using SistemaDeRestaurante.Enums
+@model List<ContaModel>
+
+<h1>Lista de Contas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                @switch (item.Perfil)
+                {
+                    case EnumPerfil.Cliente:
+                        <td>Cliente/Mesa</td>
+                        break;
+                    case EnumPerfil.Admin:
+                        <td>Admin</td>
+                        break;
+                    case EnumPerfil.Pagamento:
+                        <td>Pagamento</td>
+                        break;
+                    case EnumPerfil.Cozinha:
+                        <td>Cozinha</td>
+                        break;
+                }
+                <td><a asp-action="DeletarConta" class="btn btn-group btn-danger">Deletar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

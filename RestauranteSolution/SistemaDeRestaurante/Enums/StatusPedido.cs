@@ -4,7 +4,7 @@
     {
         Pendente = 0,
         EmPreparo = 1,
-        EmConsumo = 2,
+        Pronto = 2,
         Pago = 3,
     }
 }
