@@ -1,1 +1,0 @@
-Usuario tentou deletar uma mesa, porém o ID não foi encontrado!
