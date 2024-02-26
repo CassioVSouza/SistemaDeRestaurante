@@ -1,0 +1,33 @@
+﻿@model ProdutosModel
+
+@{
+    ViewData["Title"] = "AdicionarProdutos";
+}
+
+@if (TempData["SucessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SucessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form asp-action="AdicionarProdutos" method="post">
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" id="Nome">
+        @Html.ValidationMessageFor(o => o.Nome)
+    </div>
+    <div class="mb-3">
+        <label for="Preco" class="form-label">Preço</label>
+        <input type="number" asp-for="Preco" class="form-control" id="Preco">
+        @Html.ValidationMessageFor(o => o.Preco)
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+</form>

@@ -1,0 +1,57 @@
+﻿@using SistemaDeRestaurante.Enums
+@model List<PedidosModel>
+
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1>Pedidos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Quantidade de Produtos</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <td>@Model.Count</td>
+                @switch (item.StatusPedido)
+                    {
+                      case StatusPedido.Pendente:
+                        <td>Pendente</td>
+                      break;
+                        case StatusPedido.Pronto:
+                        <td>Pronto</td>
+                            break;
+                        case StatusPedido.Pago:
+                        <td>Pago</td>
+                            break;
+                        case StatusPedido.EmPreparo:
+                            <td>Em Preparo</td>
+                            break;
+                        default:
+                            <td>Pendente</td>
+                            break;
+                    }
+                
+                @if(item.StatusPedido == StatusPedido.Pendente)
+                    {
+                    <td>
+                        <a class="btn btn-group btn-primary" role="button" asp-action="MudarStatusPedido" asp-route-id="1">Preparar</a>
+                    </td>
+                    }else if (item.StatusPedido == StatusPedido.EmPreparo)
+                    {
+                    <td>
+                        <a class="btn btn-group btn-primary" role="button" asp-action="MudarStatusPedido" asp-route-id="2">Pronto</a>
+                    </td>
+                    }
+            </tr>
+        }
+    </tbody>
+</table>

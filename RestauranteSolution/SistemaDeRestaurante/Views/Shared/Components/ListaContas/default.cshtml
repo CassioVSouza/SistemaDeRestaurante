@@ -30,7 +30,7 @@
                         <td>Cozinha</td>
                         break;
                 }
-                <td><a asp-action="DeletarConta" class="btn btn-group btn-danger">Deletar</a></td>
+                <td><a asp-action="DeletarConta" asp-route-id="@item.Id" class="btn btn-group btn-danger">Deletar</a></td>
             </tr>
         }
     </tbody>

@@ -66,7 +66,7 @@ namespace SistemaDeRestaurante.Repositorio
             }
         }
 
-        public List<ContaModel> PegarTodasAsContas()
+        public List<ContaModel>? PegarTodasAsContas()
         {
             try
             {

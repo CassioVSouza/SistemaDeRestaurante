@@ -6,6 +6,20 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if(TempData["SucessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SucessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
 <h1>Criar Conta</h1>
 
 <form asp-action="AdicionarConta" method="post">

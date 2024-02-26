@@ -9,6 +9,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddScoped<ISystemLog, SystemLog>();
 builder.Services.AddScoped<IContasRepositorio,  ContasRepositorio>();
+builder.Services.AddScoped<IPedidosRepositorio, PedidosRepositorio>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
 var app = builder.Build();
 
