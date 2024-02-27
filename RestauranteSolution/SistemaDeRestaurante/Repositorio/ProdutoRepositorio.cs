@@ -47,7 +47,7 @@ namespace SistemaDeRestaurante.Repositorio
             }
         }
 
-        private ProdutosModel? EncontrarProduto(int id)
+        public ProdutosModel? EncontrarProduto(int id)
         {
             try
             {

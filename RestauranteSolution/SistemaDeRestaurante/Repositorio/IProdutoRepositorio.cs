@@ -6,7 +6,7 @@ namespace SistemaDeRestaurante.Repositorio
     {
         bool AdicionarProduto(ProdutosModel produto);
         List<ProdutosModel>? PegarTodosOsProdutos();
-
         bool DeletarProdutos(int id);
+        ProdutosModel? EncontrarProduto(int id);
     }
 }

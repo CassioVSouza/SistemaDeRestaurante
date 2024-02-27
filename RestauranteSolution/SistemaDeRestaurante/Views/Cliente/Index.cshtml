@@ -1,0 +1,28 @@
+﻿@model List<ProdutosModel>
+
+@{
+    Layout = "_Layout_Cliente";
+    ViewData["Title"] = "Tela do Cliente";
+}
+
+<h1>Lista de Produtos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Preco</td>
+                <td><a asp-action="AdicionarAoCarrinho" asp-route-id="@item.ID" class="btn btn-group btn-danger">Adicionar ao Carrinho</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
