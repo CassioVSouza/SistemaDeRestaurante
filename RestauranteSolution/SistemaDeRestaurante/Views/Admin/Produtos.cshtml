@@ -1,6 +1,7 @@
 ﻿@model ProdutosModel
 
 @{
+    Layout = "_Layout_AdminListaProdutos";
     ViewData["Title"] = "AdicionarProdutos";
 }
 
@@ -26,7 +27,7 @@
     </div>
     <div class="mb-3">
         <label for="Preco" class="form-label">Preço</label>
-        <input type="number" asp-for="Preco" class="form-control" id="Preco">
+        <input type="text" asp-for="Preco" class="form-control" id="Preco">
         @Html.ValidationMessageFor(o => o.Preco)
     </div>
     <button type="submit" class="btn btn-primary">Adicionar</button>

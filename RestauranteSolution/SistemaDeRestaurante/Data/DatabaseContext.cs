@@ -23,8 +23,7 @@ namespace SistemaDeRestaurante.Data
 
             modelBuilder.Entity<PedidosModel>()
                 .HasMany(o => o.Produtos)
-                .WithOne()
-                .HasForeignKey(o => o.ID);
+                .WithOne();
 
             base.OnModelCreating(modelBuilder);
         }

@@ -64,6 +64,31 @@ namespace SistemaDeRestaurante.Controllers
                 return View("Index");
             }
         }
+
+        public IActionResult DeletarProdutos(int id)
+        {
+            try
+            {
+                if (_produtos.DeletarProdutos(id))
+                {
+                    TempData["SucessMessage"] = "Produto deletado com sucesso!";
+                    return View("Produtos");
+                }
+                TempData["ErrorMessage"] = "Não foi possível deletar o produto!";
+                _log.ErrorMsg("Erro ao tentar deletar um produto, função do repositório retornou false");
+                return View("Produtos");
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorMsg("Erro em AdminController/DeletarProduto: " + ex.Message);
+                return View("Produtos");
+            }
+        }
+        public IActionResult Produtos()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AdicionarProdutos(ProdutosModel produtos)
         {
@@ -71,22 +96,23 @@ namespace SistemaDeRestaurante.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Console.WriteLine(produtos.Preco);
                     if (_produtos.AdicionarProduto(produtos)){
                         TempData["SucessMessage"] = "Produto Adicionado com sucesso!";
-                        return View();
+                        return View("Produtos");
                     }
                     TempData["ErrorMessage"] = "Não foi possível adicionar o produto!";
                     _log.ErrorMsg("Erro em AdicionarProdutos, O metodo de adicionar retornou falso");
-                    return View();
+                    return View("Produtos");
                 }
                 TempData["ErrorMessage"] = "Não foi possível adicionar o produto!";
                 _log.ErrorMsg("Erro em AdicionarProdutos, O modelo enviado não é valido");
-                return View();
+                return View("Produtos");
             }
             catch (Exception ex)
             {
                 _log.ErrorMsg("Erro em AdminController/AdicionarProduto: " + ex.Message);
-                return View();
+                return View("Produtos");
             }
         }
 

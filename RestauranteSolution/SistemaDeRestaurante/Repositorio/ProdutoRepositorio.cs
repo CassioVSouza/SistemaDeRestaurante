@@ -19,10 +19,64 @@ namespace SistemaDeRestaurante.Repositorio
                 _dbContext.Produtos.Add(produtos);
                 _dbContext.SaveChanges();
                 return true;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _log.ErrorMsg("Erro em ProdutoRepositorio/AdicionarProduto: " + ex.Message);
                 return false;
+            }
+        }
+
+        public bool DeletarProdutos(int id)
+        {
+            try
+            {
+                var Produto = EncontrarProduto(id);
+                if (Produto == null)
+                {
+                    return false;
+                }
+                _dbContext.Produtos.Remove(Produto);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorMsg("Erro em ProdutoRepositorio/DeletarProduto: " + ex.Message);
+                return false;
+            }
+        }
+
+        private ProdutosModel? EncontrarProduto(int id)
+        {
+            try
+            {
+                var Produto = _dbContext.Produtos.FirstOrDefault(o => o.ID == id);
+                if (Produto == null)
+                {
+                    _log.ErrorMsg("Não foi possível encontrar um produto com o ID informado em ProdutoRepositorio/EncontrarProduto");
+                    return null;
+                }
+                return Produto;
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorMsg("Erro em ProdutoRepositorio/EncontrarProduto: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<ProdutosModel>? PegarTodosOsProdutos()
+        {
+            try
+            {
+                var lista = _dbContext.Produtos.ToList();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorMsg("Erro em ProdutoRepositorio/PegarTodosOsProdutos: " + ex.Message);
+                return null;
             }
         }
     }
